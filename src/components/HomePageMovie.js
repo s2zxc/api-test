@@ -64,7 +64,7 @@ import { Link, json } from "react-router-dom";
 // }
 
 const HomePageMovie = ()=>{
-    retuern (
+    return (
         <div>wow</div>
     )
 }
