@@ -53,8 +53,8 @@ const HomePageMovie = ({id, title, overview, img, average, releaseDate}) => {
         <div>
             <h1>JunPlix</h1>
             <h3>{title}</h3>
-            <Link to={`${process.env.PUBLIC_URL}https://www.youtube.com/watch?v=${trailerId}`}>        
-                <img src={`${process.env.PUBLIC_URL}https://image.tmdb.org/t/p/w200/${img}`}></img>
+            <Link to={`https://www.youtube.com/watch?v=${trailerId}`}>        
+                <img src={`https://image.tmdb.org/t/p/w200/${img}`}></img>
                 </Link>        
             <p>출시일 : {releaseDate}</p>
             <p>평점 : {average}</p>
