@@ -45,17 +45,13 @@ const HomePageMovie = ({ id, title, overview, img, average, releaseDate }) => {
         trailerRes();
     }, [])
 
-    // <Link to={`${process.env.PUBLIC_URL}/Trailer/${id}`}>
-
-
-
     return (
-        <span>
+        
                 <Link to={`https://www.youtube.com/watch?v=${trailerId}`}>
-                    <img src={`https://image.tmdb.org/t/p/w200/${img}`}></img>
+                        <img style={{width:200, height:300, borderRadius:20}} src={`https://image.tmdb.org/t/p/w200/${img}`}></img>
                 </Link>
+            
                 
-        </span>
     )
 }
 
