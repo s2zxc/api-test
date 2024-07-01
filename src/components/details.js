@@ -10,7 +10,7 @@ const HomePageMovie = ({ id, title, overview, img, average, releaseDate }) => {
     const [error, setError] = useState(null);
 
     const trailerRes = async () => {
-        const language = ""; // 한글자막 없는 유튜브 링크일 수도 있으므로 빈값
+        const language = "ko-KR";
         try {
             // 상태 초기화
             setError(null);
@@ -50,12 +50,19 @@ const HomePageMovie = ({ id, title, overview, img, average, releaseDate }) => {
 
 
     return (
-        <span>
+        <div>
+            <div>
+                <h3>{title}</h3>
                 <Link to={`https://www.youtube.com/watch?v=${trailerId}`}>
                     <img src={`https://image.tmdb.org/t/p/w200/${img}`}></img>
                 </Link>
-                
-        </span>
+            </div>
+
+
+            <p>출시일 : {releaseDate}</p>
+            <p>평점 : {average}</p>
+            <p>상세설명 : {overview ? overview : "준비중 입니다."}</p>
+        </div>
     )
 }
 

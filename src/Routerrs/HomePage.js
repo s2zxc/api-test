@@ -1,6 +1,10 @@
 import axios from "axios"
 import { useEffect, useState } from "react";
 import HomePageMovie from "../components/HomePageMovie";
+import Loading from "../components/Loading";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 let data = [];
 
@@ -12,6 +16,14 @@ const HomePage = () => {
     const [curDate, setCurDate] = useState(new Date);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 5
+    }
 
     const fetchMovie = async () => {
         const language = "ko-KR";
@@ -59,18 +71,36 @@ const HomePage = () => {
     }, [])
 
     return (
-        <div>{loading ? <h1>Loding..</h1> : (movieList.map((e) =>
-            <HomePageMovie
-                id={e.id} // 영화 id값 추후 트레일러 불러올때 사용예정
-                key={e.id}
-                title={e.title} // 제목
-                overview={e.overview} // 상세설명
-                img={e.poster_path} // 포스터 이미지
-                average={e.vote_average} // 평점
-                releaseDate={e.release_date} // 상영일
-            />
-        ))}</div>
+        <div>
+            {
+                loading ? <Loading /> :
+                    <div>
+                        <h1>최신영화</h1>
+                        <div className="slider-container">
+                            <Slider {...settings}>
+                                {movieList.map((e) => {
+                                    return (
+                                        <div>
+                                            {<HomePageMovie
+                                                id={e.id} // 영화 id값 추후 트레일러 불러올때 사용예정
+                                                key={e.id}
+                                                title={e.title} // 제목
+                                                overview={e.overview} // 상세설명
+                                                img={e.poster_path} // 포스터 이미지
+                                                average={e.vote_average} // 평점
+                                                releaseDate={e.release_date} // 상영일
+                                            />}
+                                        </div>
+                                    )
+                                })}
+                            </Slider>
+                        </div>
+                    </div>
+            }
+        </div>
+
     )
 }
 
 export default HomePage;
+
